@@ -31,7 +31,7 @@ export default function AppBanner() {
     const handleLogout = () => {
         handleMenuClose();
         auth.logoutUser();
-        store.clearTransactions();
+        //store.clearTransactions();
     }
 
     const menuId = 'primary-search-account-menu';
@@ -77,6 +77,7 @@ export default function AppBanner() {
     let editToolbar = "";
     let menu = loggedOutMenu;
     if (auth.loggedIn) {
+        console.log("we are loggioned in so menu should change");
         menu = loggedInMenu;
         if (store.currentList) {
             editToolbar = <EditToolbar />;
@@ -100,7 +101,7 @@ export default function AppBanner() {
                         variant="h4"
                         noWrap
                         component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
+                        sx={{ display: { xs: 'none', sm: 'block' }, zIndex: 3 }}
                     >
                         <Link style={{ textDecoration: 'none', color: 'white' }} to='/'>⌂</Link>
                     </Typography>
