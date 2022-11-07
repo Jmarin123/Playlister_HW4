@@ -3,7 +3,7 @@ import { GlobalStoreContext } from '../store'
 
 function SongCard(props) {
     const { store } = useContext(GlobalStoreContext);
-    const [ draggedTo, setDraggedTo ] = useState(0);
+    const [draggedTo, setDraggedTo] = useState(0);
     const { song, index } = props;
 
     function handleDragStart(event) {
@@ -39,6 +39,7 @@ function SongCard(props) {
     function handleClick(event) {
         // DOUBLE CLICK IS FOR SONG EDITING
         if (event.detail === 2) {
+            console.log("handling double click :P")
             store.showEditSongModal(index, song);
         }
     }
