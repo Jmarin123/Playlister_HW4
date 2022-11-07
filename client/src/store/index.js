@@ -332,6 +332,7 @@ function GlobalStoreContextProvider(props) {
         tps.clearAllTransactions();
         history.push("/");
     }
+
     store.unmarkListForDeletion = function () {
         storeReducer({
             type: GlobalStoreActionType.REMOVE_CURRENT_DELETE_MARK_LIST,

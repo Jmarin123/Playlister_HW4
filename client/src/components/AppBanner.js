@@ -31,7 +31,8 @@ export default function AppBanner() {
     const handleLogout = () => {
         handleMenuClose();
         auth.logoutUser();
-        //store.clearTransactions();
+        store.newListCounter = 0;
+        store.closeCurrentList();
     }
 
     const menuId = 'primary-search-account-menu';
@@ -51,8 +52,8 @@ export default function AppBanner() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}><Link to='/login/'>Login</Link></MenuItem>
-            <MenuItem onClick={handleMenuClose}><Link to='/register/'>Create New Account</Link></MenuItem>
+            <MenuItem component={Link} to="/login" onClick={handleMenuClose}><Link to='/login/'>Login</Link></MenuItem>
+            <MenuItem component={Link} to="/register" onClick={handleMenuClose}><Link to='/register/'>Create New Account</Link></MenuItem>
         </Menu>
     );
     const loggedInMenu =
@@ -93,6 +94,10 @@ export default function AppBanner() {
             return <AccountCircle />;
     }
 
+    function handleHomescreen() {
+        store.closeCurrentList();
+    }
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -102,6 +107,7 @@ export default function AppBanner() {
                         noWrap
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' }, zIndex: 3 }}
+                        onClick={handleHomescreen}
                     >
                         <Link style={{ textDecoration: 'none', color: 'white' }} to='/'>⌂</Link>
                     </Typography>
