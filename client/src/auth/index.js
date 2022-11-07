@@ -69,20 +69,25 @@ function AuthContextProvider(props) {
         }
     }
 
-    auth.registerUser = async function(firstName, lastName, email, password, passwordVerify) {
-        const response = await api.registerUser(firstName, lastName, email, password, passwordVerify);      
-        if (response.status === 200) {
-            authReducer({
-                type: AuthActionType.REGISTER_USER,
-                payload: {
-                    user: response.data.user
-                }
-            })
-            history.push("/login");
+    auth.registerUser = async function (firstName, lastName, email, password, passwordVerify) {
+        try {
+            const response = await api.registerUser(firstName, lastName, email, password, passwordVerify);
+            if (response.status === 200) {
+                // authReducer({
+                //     type: AuthActionType.REGISTER_USER,
+                //     payload: {
+                //         user: response.data.user
+                //     }
+                // })
+                // history.push("/");
+                auth.loginUser(email, password);
+            }
+        } catch (e) {
+            console.log("test");
         }
     }
 
-    auth.loginUser = async function(email, password) {
+    auth.loginUser = async function (email, password) {
         const response = await api.loginUser(email, password);
         if (response.status === 200) {
             authReducer({
@@ -95,10 +100,10 @@ function AuthContextProvider(props) {
         }
     }
 
-    auth.logoutUser = async function() {
+    auth.logoutUser = async function () {
         const response = await api.logoutUser();
         if (response.status === 200) {
-            authReducer( {
+            authReducer({
                 type: AuthActionType.LOGOUT_USER,
                 payload: null
             })
@@ -106,7 +111,7 @@ function AuthContextProvider(props) {
         }
     }
 
-    auth.getUserInitials = function() {
+    auth.getUserInitials = function () {
         let initials = "";
         if (auth.user) {
             initials += auth.user.firstName.charAt(0);
