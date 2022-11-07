@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import AuthContext from '../auth'
 
 import Copyright from './Copyright'
-
+import LoginError from './LoginError';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -102,7 +102,7 @@ export default function LoginScreen() {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="/register" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>
@@ -111,6 +111,7 @@ export default function LoginScreen() {
                     </Box>
                 </Box>
             </Grid>
+            <LoginError />
         </Grid>
     );
 }
